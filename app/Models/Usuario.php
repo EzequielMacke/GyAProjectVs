@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'usuarios';
 
     protected $fillable = [
@@ -13,7 +16,7 @@ class Usuario extends Model
         'apellido',
         'titulacion_id',
         'cargo_id',
-        'correo',
+        'email',
         'password',
         'estado_id',
         'sucursal_id',
@@ -39,5 +42,10 @@ class Usuario extends Model
     public function sucursal()
     {
         return $this->belongsTo(Sucursal::class);
+    }
+
+    public function getAuthIdentifierName()
+    {
+        return 'email';
     }
 }

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('apellido');
             $table->unsignedInteger('titulacion_id')->nullable();
             $table->foreign('titulacion_id')->references('id')->on('titulaciones');
-            $table->unsignedInteger('cargo_id');
+            $table->unsignedInteger('cargo_id')->nullable();
             $table->foreign('cargo_id')->references('id')->on('cargos');
-            $table->string('correo');
+            $table->string('email')->unique();
             $table->string('password');
             $table->unsignedInteger('estado_id');
             $table->foreign('estado_id')->references('id')->on('estados');

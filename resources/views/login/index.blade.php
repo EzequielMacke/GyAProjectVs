@@ -16,14 +16,21 @@
                             <i class="bi bi-person-circle fs-1 text-primary"></i>
                             <h3 class="mt-2 mb-0">Iniciar sesión</h3>
                         </div>
-                        <form>
+                        <form method="POST" action="{{ route('login.process') }}">
+                            @csrf
+
+                             @if ($errors->has('email'))
+                                <div class="alert alert-danger">
+                                    {{ $errors->first('email') }}
+                                </div>
+                            @endif
                             <div class="mb-3">
                                 <label for="email" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control" id="email" placeholder="usuario@ejemplo.com" required>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="usuario@ejemplo.com" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Ingresar</button>
                         </form>
